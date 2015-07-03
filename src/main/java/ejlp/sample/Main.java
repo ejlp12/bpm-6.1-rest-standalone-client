@@ -42,9 +42,9 @@ public class Main {
 		TaskService taskService = engine.getTaskService();		
 		List<TaskSummary> tasks = taskService.getTasksAssignedAsPotentialOwner(USER, "en-UK");
 		if(tasks.size() == 0){
-			System.out.printf("No tasks for user \"%s\" as owner...\n", USER);
+			System.out.printf("No tasks can be claimed by user \"%s\" as owner...\n", USER);
 		} else {
-			System.out.printf("Tasks where user \"%s\" is a an owner...\n", USER);
+			System.out.printf("Tasks where user \"%s\" able to claim...\n", USER);
 			for(TaskSummary t : tasks){
 				System.out.printf("ID: %d\n", t.getId());
 				System.out.printf("Task Name: %s\n", t.getName());
