@@ -12,7 +12,7 @@ import org.kie.remote.client.api.RemoteRuntimeEngineFactory;
 /**
  * This is a very simple Rest Client to test against a running instance of 
  * the KIE Workbench/Business Central
- * Tested on JBoss BPM Suite version 6.2.X 
+ * Tested on JBoss BPM Suite version 6.1.X 
  * You can parameterize
  *   - the Deployment Unit Id
  *   - the Application URL
