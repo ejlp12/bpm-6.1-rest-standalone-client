@@ -2,17 +2,22 @@ package ejlp.sample;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.api.task.TaskService;
+import org.kie.api.task.model.Status;
+import org.kie.api.task.model.Task;
 import org.kie.api.task.model.TaskSummary;
 import org.kie.remote.client.api.RemoteRuntimeEngineFactory;
 
 /**
  * This is a very simple Rest Client to test against a running instance of 
  * the KIE Workbench/Business Central
- * Tested on JBoss BPM Suite version 6.1.X 
+ * Tested on JBoss BPM Suite version 6.2.X 
  * You can parameterize
  *   - the Deployment Unit Id
  *   - the Application URL
@@ -37,6 +42,17 @@ public class Main {
 				.addUrl(url).addUserName(USER).addPassword(PASSWORD)
 				.addDeploymentId(DEPLOYMENT_ID).build();
 		
+		
+		KieSession session =  engine.getKieSession();
+		
+		//Create parameters for a process
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("_a1", "_A1_VALUE");
+		params.put("_a2", new Integer(111));
+		params.put("_a3", new Boolean(true));
+		
+		//Start a new process "ProcessName" to create a new process instance
+		session.startProcess("ProcessName", params);
 		
 		// The TaskService class allows we to access the server tasks
 		TaskService taskService = engine.getTaskService();		
